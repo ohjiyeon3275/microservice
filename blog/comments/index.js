@@ -1,7 +1,7 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const { randomBytes } = require('crypto')
-const cors = require('cors');
+const express = require("express");
+const bodyParser = require("body-parser");
+const { randomBytes } = require("crypto");
+const cors = require("cors");
 
 const app = express();
 
@@ -11,23 +11,30 @@ app.use(cors());
 //1개의 postId와 연결되는 comments들을 저장
 const commentsByPostId = {};
 
-app.get('/posts/:id/comments', (req, res) => {
-    res.send(commentsByPostId[req.params.id] || []);
-})
+app.get("/posts/:postId/comments", (req, res) => {
+  const postId = req.params;
 
-app.post('/posts/:id/comments', (req, res) => {
-    const commentId = randomBytes(4).toString('hex');
-    const { content } = req.body;
+  res.send(commentsByPostId[postId] || []);
+});
 
-    const comments = commentsByPostId[req.params.id] || [];
+app.post("/posts/:postId/comments", (req, res) => {
+  const commentId = randomBytes(4).toString("hex");
+  const { content } = req.body;
+  const postId = req.params;
 
-    comments.push({ id: commentId, content})
+  const comments = commentsByPostId[postId] || [];
 
-    commentsByPostId[req.params.id] = comments;
+  comments.push({ id: commentId, content });
 
-    res.status(201).send(comments);
-})
+  commentsByPostId[postId] = comments;
+
+  res.status(201).send(comments);
+});
+
+app.get("/comments", (req, res) => {
+  res.send();
+});
 
 app.listen(4001, () => {
-    console.log('listening 4001');
-})
+  console.log("listening 4001");
+});

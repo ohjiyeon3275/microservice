@@ -9,8 +9,6 @@ const App = () => {
 
       <PostCreate />
       <hr />
-
-      <h1>PostList</h1>
       <PostList />
     </div>
   );
