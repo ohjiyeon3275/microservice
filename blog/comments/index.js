@@ -12,7 +12,7 @@ app.use(cors());
 const commentsByPostId = {};
 
 app.get("/posts/:postId/comments", (req, res) => {
-  const postId = req.params;
+  const postId = req.params.postId;
 
   res.send(commentsByPostId[postId] || []);
 });
@@ -20,7 +20,7 @@ app.get("/posts/:postId/comments", (req, res) => {
 app.post("/posts/:postId/comments", (req, res) => {
   const commentId = randomBytes(4).toString("hex");
   const { content } = req.body;
-  const postId = req.params;
+  const postId = req.params.postId;
 
   const comments = commentsByPostId[postId] || [];
 
