@@ -20,7 +20,7 @@ app.get("/posts/:postId/comments", (req, res) => {
 
 app.post("/posts/:postId/comments", async (req, res) => {
   const commentId = randomBytes(4).toString("hex");
-  const content = req.body;
+  const { content } = req.body;
   const postId = req.params.postId;
 
   const comments = commentsByPostId[postId] || [];
@@ -33,7 +33,7 @@ app.post("/posts/:postId/comments", async (req, res) => {
     type: "CommentCreated",
     data: {
       id: commentId,
-      content: content,
+      content,
       postId: postId,
     },
   });
@@ -46,7 +46,7 @@ app.get("/comments", (req, res) => {
 });
 
 app.post("/events", (req, res) => {
-  console.log("comment event!!");
+  console.log("comment event!!", req.body.type);
 
   res.send({});
 });
