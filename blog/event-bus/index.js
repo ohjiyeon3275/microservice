@@ -20,6 +20,10 @@ app.post("/events", (req, res) => {
     console.log("Cannot reach server port 4002" + err);
   });
 
+  axios.post("http://localhost:4003/events", event).catch((err) => {
+    console.log("Cannot reach server port 4003" + err);
+  });
+
   res.send({ status: "OK" });
 });
 
