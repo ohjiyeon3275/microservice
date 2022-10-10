@@ -12,19 +12,21 @@ app.post("/events", (req, res) => {
 
   events.push(event);
 
-  axios.post("http://localhost:4000/events", event).catch((err) => {
-    console.log("Cannot reach server port 4000" + err);
-  });
+  axios
+    .post("http://post-clusterip-service:4000/events", event)
+    .catch((err) => {
+      console.log("Cannot reach server port 4000" + err);
+    });
 
-  axios.post("http://localhost:4001/events", event).catch((err) => {
+  axios.post("http://comments-service:4001/events", event).catch((err) => {
     console.log("Cannot reach server port 4001" + err);
   });
 
-  axios.post("http://localhost:4002/events", event).catch((err) => {
+  axios.post("http://query-service:4002/events", event).catch((err) => {
     console.log("Cannot reach server port 4002" + err);
   });
 
-  axios.post("http://localhost:4003/events", event).catch((err) => {
+  axios.post("http://moderation-service:4003/events", event).catch((err) => {
     console.log("Cannot reach server port 4003" + err);
   });
 

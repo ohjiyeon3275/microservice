@@ -21,7 +21,8 @@ kind: Service
 metadata:
   name: post-clusterip-service
 spec:
-  type: NodePort
+  # type: NodePort
+  # making 24 line code into comment, i needed to `kubectl apply -f` again.
   selector:
     app: posts
   ports:
