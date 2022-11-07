@@ -1,10 +1,12 @@
 # microservice
 
 - client : 3000
+-> React
 
 ---
 
 server
+-> node.js
 
 - posts : 4000
 
@@ -15,3 +17,13 @@ server
 - query : 4002
 
 - moderation : 4003
+
+---
+
+- Docker
+
+- Kubernetes
+
+- Nginx-Ingress
+
+- Skaffold
